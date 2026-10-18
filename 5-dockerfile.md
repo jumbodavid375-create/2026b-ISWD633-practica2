@@ -62,7 +62,7 @@ al construir la imagen por primera vez se ejecutarán 7 pasos correspondientes a
 # RESPONDER 
 
 ### Inspeccionar la imagen creada
-[Imagenes](images.png)
+[Imagenes](img/images.png)
 
 # COMPLETAR CON UNA CAPTURA
 
