@@ -57,13 +57,18 @@ No olvides verificar en qué directorio se encuentra el archivo Dockerfile
 ```
 
 **¿Cuántos pasos se han ejecutado?**
+al construir la imagen por primera vez se ejecutarán 7 pasos correspondientes a cada una de estas líneas o capas.
+
 # RESPONDER 
 
 ### Inspeccionar la imagen creada
+[Imagenes](images.png)
+
 # COMPLETAR CON UNA CAPTURA
 
 **Modificar el archivo index.html para incluir su nombre y luego crear una nueva versión de la imagen anterior**
 **¿Cuántos pasos se han ejecutado? ¿Observa algo diferente en la creación de la imagen**
+Se han ejecutado 22 pasos se ejecutaron, y si, se noto la diferencia en el proceso es mucho más rápido porque Docker reutiliza las capas anteriores que ya tenía guardadas en lugar de volver a descargar e instalar todo desde cero.
 
 ## Mecanismo de caché
 Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso de construcción y evitar la repetición de pasos que no han cambiado. Cada instrucción en un Dockerfile crea una capa en la imagen final. Docker intenta reutilizar las capas de una construcción anterior si no han cambiado, lo que reduce significativamente el tiempo de construcción.
@@ -79,9 +84,12 @@ Docker usa un mecanismo de caché cuando crea imágenes para acelerar el proceso
 ```
 
 ### ¿Con que puerto host se está realizando el mapeo?
+Con el puerto 80
 # COMPLETAR CON LA RESPUESTA
 
 **¿Qué es una imagen huérfana?**
+Una imagen huérfana es aquella imagen que ya no está asociada a ningún contenedor  y tampoco tiene una etiqueta  activa, apareciendo normalmente listada con el nombre y etiqueta <none>:<none>. Esto ocurre comúnmente cuando se construye una nueva versión de una imagen utilizando el mismo nombre y etiqueta, dejando la versión anterior sin referencias y ocupando espacio innecesario en el disco.
+
 # COMPLETAR CON LA RESPUESTA
 
 ### Identificar imágenes huérfanas
@@ -92,6 +100,10 @@ docker images -f "dangling=true"
 ### Listar los IDS de las imágenes huérfanas
 ```
 docker images -f "dangling=true" -q
+
+docker images -f "dangling=true"
+                                                                         i Info →   U  In Use
+IMAGE   ID             DISK USAGE   CONTENT SIZE   EXTRA
 ```
 
 ### Eliminar imágenes huérfanas
@@ -99,11 +111,17 @@ Este comando eliminará todas las imágenes que no estén asociadas a ningún co
 ```
 docker image prune
 ```
+docker image prune
+WARNING! This will remove all dangling images.
+Are you sure you want to continue? [y/N] y
+Total reclaimed space: 0B
+
 
 ### Para Ejecutar un archivo Dockerfile que tiene otro nombre
 ```
 docker build -t <nombre imagen>:<tag> -f <ruta y nombre del Dockerfile> .
 ```
+
 
 ## Por ejemplo
 docker build -t imagen:1.0 -f Dockerfile-custom .
